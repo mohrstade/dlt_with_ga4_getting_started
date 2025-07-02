@@ -40,10 +40,10 @@ def ga4_admin_source() -> Iterable[DltResource]:
             property_dict = MessageToDict(property._pb)
             yield property_dict
 
-    # Ressource 3: Bigquery annotations laden.
+    # Resource 3: BigQuery annotations laden.
     @dlt.transformer(name="annotations", data_from=get_properties, max_table_nesting=0)
-    def get_annotations(properties=get_properties()) -> Iterable[dict]:
-        property_name = properties.get("name")
+    def get_annotations(property) -> Iterable[dict]:
+        property_name = property.get("name")
         request = ListReportingDataAnnotationsRequest(mapping={"parent": property_name})
 
         results = client.list_reporting_data_annotations(request=request)
@@ -51,4 +51,4 @@ def ga4_admin_source() -> Iterable[DltResource]:
             annotation_dict = MessageToDict(annotation._pb)
             yield annotation_dict
 
-    return (get_accounts, get_properties, get_annotations)
+    yield from (get_accounts, get_properties, get_annotations)
