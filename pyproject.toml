@@ -4,7 +4,10 @@ version = "0.1.0"
 description = "An Example dlt source for the Google Analytics 4 Admin API"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = [
-    "dlt[bigquery]>=1.12.3",
-    "google-analytics-admin>=0.24.0",
+dependencies = ["dlt[bigquery]>=1.12.3", "google-analytics-admin>=0.24.0"]
+
+[dependency-groups]
+dev = [
+    "dlt[duckdb,streamlit]>=1.12.3",
+    "streamlit>=1.46.1",
 ]

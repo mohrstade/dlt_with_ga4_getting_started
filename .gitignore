@@ -208,3 +208,4 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+ga4_admin_metadata.duckdb
